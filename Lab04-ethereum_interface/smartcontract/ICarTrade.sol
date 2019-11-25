@@ -53,7 +53,6 @@ contract ICarTrade  {
         orders.push(Order(num_car[cnumber] , price ,"sale"));
         num_order[cnumber] = orders[orders.length-1];
     }
-    
     function buyUserCar(uint orderedcnumber) payable public{
         //1. send ether to car owner
         balanceTransfer(num_order[orderedcnumber].car.owner, num_order[orderedcnumber].price);
@@ -90,7 +89,6 @@ contract ICarTrade  {
     function getMyCars() public view returns(Car[] memory){
         return myCars;
     }
-    
     //called when server is started and cur_user changed 
     function setMyCars() public {
         myCars.length = 0;
@@ -109,16 +107,13 @@ contract ICarTrade  {
     function getAllOrderedCar() public view returns(Order[] memory){
         return orders;
     }
-    
     //have to make it print 'ether';
     function getBalance(address user) public view returns(uint256){ 
         return user.balance ;
     }    
-
     function getPrice(uint cnumber) public view returns(uint){
         return num_order[cnumber].price;
     }
-    
     function isOrder(uint cnumber) public view returns(bool){
         if(num_order[cnumber].car.number == cnumber){
             return true;
@@ -127,8 +122,6 @@ contract ICarTrade  {
         }    
         
     }
-    
-    
     function compareStrings (string memory a, string memory b) internal pure returns (bool) {
         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))) );
        }
